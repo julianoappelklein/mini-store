@@ -57,8 +57,8 @@
     
     <div class="code-example">
         <h3>🎯 What's Different?</h3>
-        <p>This example uses <code>mini-store.browser.js</code> which directly injects <span class="highlight">SimpleStore</span> into the window object.</p>
-        <p><strong>No namespace needed!</strong> Just use <code>SimpleStore</code> directly instead of <code>MiniStore.SimpleStore</code></p>
+        <p>This example uses <code>mini-store.browser.js</code> which directly injects <span class="highlight">MiniStore</span> into the window object.</p>
+        <p><strong>No namespace needed!</strong> Just use <code>MiniStore</code> directly instead of <code>MiniStore.MiniStore</code></p>
     </div>
     
     <div class="counter" id="counter">0</div>
@@ -70,22 +70,22 @@
     <div class="code-example">
         <h3>📝 Usage Comparison:</h3>
         <p><strong>Regular UMD build:</strong></p>
-        <code>const { SimpleStore } = MiniStore;</code>
+        <code>const { MiniStore } = MiniStore;</code>
         
         <p><strong>Direct injection build:</strong></p>
-        <code>// SimpleStore is already available globally!</code><br>
-        <code>const store = new SimpleStore({ count: 0 });</code>
+        <code>// MiniStore is already available globally!</code><br>
+        <code>const store = new MiniStore({ count: 0 });</code>
     </div>
 
     <!-- Direct window injection - no namespace needed! -->
     <script src="../dist/mini-store.browser.js"></script>
     <script>
-        // SimpleStore is now directly available on window!
-        console.log('SimpleStore available:', typeof SimpleStore !== 'undefined');
-        console.log('SimpleStore constructor:', SimpleStore);
+        // MiniStore is now directly available on window!
+        console.log('MiniStore available:', typeof MiniStore !== 'undefined');
+        console.log('MiniStore constructor:', MiniStore);
         
-        // Create store with initial state - no MiniStore.SimpleStore needed!
-        const store = new SimpleStore({ 
+        // Create store with initial state - no MiniStore.MiniStore needed!
+        const store = new MiniStore({ 
             count: 0,
             lastUpdated: new Date().toISOString()
         });

@@ -137,10 +137,10 @@
     <!-- Use local build for development -->
     <script src="../dist/mini-store.umd.js"></script>
     <script>
-        const { SimpleStore } = MiniStore;
+        const { MiniStore } = MiniStore;
         
         // Initial state
-        const store = new SimpleStore({
+        const store = new MiniStore({
             todos: [],
             filter: 'all', // 'all', 'active', 'completed'
             nextId: 1

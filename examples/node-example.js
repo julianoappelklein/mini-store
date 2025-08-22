@@ -1,8 +1,8 @@
 // Example usage in Node.js or with a bundler
-import { SimpleStore } from '../dist/mini-store.esm.js';
+import { MiniStore } from '../dist/mini-store.esm.js';
 
 // Create a store for a shopping cart
-const cartStore = new SimpleStore({
+const cartStore = new MiniStore({
   items: [],
   total: 0,
   discountCode: null,

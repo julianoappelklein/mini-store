@@ -1,10 +1,10 @@
-import { SimpleStore } from '../index';
+import { MiniStore } from '../index';
 
-describe('SimpleStore', () => {
-  let store: SimpleStore<{ count: number; name: string }>;
+describe('MiniStore', () => {
+  let store: MiniStore<{ count: number; name: string }>;
 
   beforeEach(() => {
-    store = new SimpleStore({ count: 0, name: 'test' });
+    store = new MiniStore({ count: 0, name: 'test' });
   });
 
   describe('constructor', () => {

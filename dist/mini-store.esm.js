@@ -1,4 +1,4 @@
-class SimpleStore {
+class MiniStore {
     constructor(state) {
         this._subscribers = new Set();
         this._defaultComparer = (a, b) => a === b;
@@ -74,5 +74,5 @@ class SimpleStore {
     }
 }
 
-export { SimpleStore, SimpleStore as default };
+export { MiniStore, MiniStore as default };
 //# sourceMappingURL=mini-store.esm.js.map

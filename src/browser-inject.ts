@@ -1,14 +1,14 @@
-import { SimpleStore } from './index.js';
+import { MiniStore } from './index.js';
 
-// Inject SimpleStore directly into the browser window object
+// Inject MiniStore directly into the browser window object
 declare global {
   interface Window {
-    SimpleStore: typeof SimpleStore;
+    MiniStore: typeof MiniStore;
   }
 }
 
 if (typeof window !== 'undefined') {
-  window.SimpleStore = SimpleStore;
+  window.MiniStore = MiniStore;
 }
 
-export { SimpleStore };
+export { MiniStore };

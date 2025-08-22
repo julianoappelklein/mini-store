@@ -46,9 +46,9 @@ dist/
 
 ```html
 <script type="module">
-  import { SimpleStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
+  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
   
-  const store = new SimpleStore({ count: 0 });
+  const store = new MiniStore({ count: 0 });
 </script>
 ```
 

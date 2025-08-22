@@ -4,7 +4,7 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.MiniStore = {}));
 })(this, (function (exports) { 'use strict';
 
-    class SimpleStore {
+    class MiniStore {
         constructor(state) {
             this._subscribers = new Set();
             this._defaultComparer = (a, b) => a === b;
@@ -80,8 +80,8 @@
         }
     }
 
-    exports.SimpleStore = SimpleStore;
-    exports.default = SimpleStore;
+    exports.MiniStore = MiniStore;
+    exports.default = MiniStore;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

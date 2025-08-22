@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial release of Mini Store
-- `SimpleStore` class with reactive state management
+- `MiniStore` class with reactive state management
 - TypeScript support with full type safety
 - Multiple distribution formats (ES modules, CommonJS, UMD)
 - Browser compatibility for direct HTML usage

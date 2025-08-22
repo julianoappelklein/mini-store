@@ -36,16 +36,16 @@ After building, the following files are available in `/dist/`:
 ```html
 <script src="https://unpkg.com/mini-store/dist/mini-store.umd.min.js"></script>
 <script>
-  const { SimpleStore } = MiniStore;
+  const { MiniStore } = MiniStore;
   // Use the store...
 </script>
 ```
 
 ### In JavaScript/TypeScript projects
 ```javascript
-import { SimpleStore } from 'mini-store';
+import { MiniStore } from 'mini-store';
 // or
-const { SimpleStore } = require('mini-store');
+const { MiniStore } = require('mini-store');
 ```
 
 ### Testing the Package Locally

@@ -45,9 +45,9 @@ body:
       description: Please provide minimal code to reproduce the issue
       placeholder: |
         ```javascript
-        import { SimpleStore } from 'mini-store';
+        import { MiniStore } from 'mini-store';
         
-        const store = new SimpleStore({ count: 0 });
+        const store = new MiniStore({ count: 0 });
         // Steps to reproduce...
         ```
     validations:

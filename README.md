@@ -25,20 +25,20 @@ See [GITHUB_DISTRIBUTION.md](GITHUB_DISTRIBUTION.md) for details on using Mini S
 ```html
 <!-- For modern browsers (ES modules) -->
 <script type="module">
-  import { SimpleStore } from 'https://unpkg.com/mini-store/dist/mini-store.esm.js';
+  import { MiniStore } from 'https://unpkg.com/mini-store/dist/mini-store.esm.js';
 </script>
 
 <!-- For older browsers (UMD with namespace) -->
 <script src="https://unpkg.com/mini-store/dist/mini-store.umd.min.js"></script>
 <script>
-  const { SimpleStore } = MiniStore;
+  const { MiniStore } = MiniStore;
 </script>
 
 <!-- Direct window injection (no namespace needed) -->
 <script src="https://unpkg.com/mini-store/dist/mini-store.browser.min.js"></script>
 <script>
-  // SimpleStore is now available globally
-  const store = new SimpleStore({ count: 0 });
+  // MiniStore is now available globally
+  const store = new MiniStore({ count: 0 });
 </script>
 ```
 
@@ -50,15 +50,15 @@ See [GITHUB_DISTRIBUTION.md](GITHUB_DISTRIBUTION.md) for details on using Mini S
 
 <!-- ES modules from GitHub -->
 <script type="module">
-  import { SimpleStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
+  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
 </script>
 
 <!-- Specific version -->
 <script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@v1.0.0/dist/mini-store.browser.min.js"></script>
 ```
 <script>
-  // SimpleStore is directly available!
-  const store = new SimpleStore({ count: 0 });
+  // MiniStore is directly available!
+  const store = new MiniStore({ count: 0 });
 </script>
 ```
 
@@ -67,10 +67,10 @@ See [GITHUB_DISTRIBUTION.md](GITHUB_DISTRIBUTION.md) for details on using Mini S
 ### Basic Usage
 
 ```javascript
-import { SimpleStore } from 'mini-store';
+import { MiniStore } from 'mini-store';
 
 // Create a store with initial state
-const store = new SimpleStore({
+const store = new MiniStore({
   count: 0,
   user: { name: 'John', age: 30 }
 });
@@ -98,17 +98,17 @@ The library provides different builds for browser usage:
 
 | Build | File | Usage | Access Pattern |
 |-------|------|-------|----------------|
-| **UMD** | `mini-store.umd.js` | Namespaced | `const { SimpleStore } = MiniStore;` |
-| **Direct Injection** | `mini-store.browser.js` | Global | `const store = new SimpleStore({});` |
-| **ES Module** | `mini-store.esm.js` | Import | `import { SimpleStore } from '...';` |
+| **UMD** | `mini-store.umd.js` | Namespaced | `const { MiniStore } = MiniStore;` |
+| **Direct Injection** | `mini-store.browser.js` | Global | `const store = new MiniStore({});` |
+| **ES Module** | `mini-store.esm.js` | Import | `import { MiniStore } from '...';` |
 
 #### Direct Window Injection Example
 
 ```html
 <script src="https://unpkg.com/mini-store/dist/mini-store.browser.min.js"></script>
 <script>
-  // SimpleStore is directly available on window - no namespace needed!
-  const store = new SimpleStore({ count: 0 });
+  // MiniStore is directly available on window - no namespace needed!
+  const store = new MiniStore({ count: 0 });
   
   store.subscribe(count => {
     document.getElementById('counter').textContent = count;
@@ -159,9 +159,9 @@ const unsubscribeFullName = store.subscribe(
 
     <script src="https://unpkg.com/mini-store/dist/mini-store.umd.min.js"></script>
     <script>
-        const { SimpleStore } = MiniStore;
+        const { MiniStore } = MiniStore;
         
-        const store = new SimpleStore({ count: 0 });
+        const store = new MiniStore({ count: 0 });
         
         const counterEl = document.getElementById('counter');
         
@@ -191,7 +191,7 @@ const unsubscribeFullName = store.subscribe(
 ### Constructor
 
 ```typescript
-new SimpleStore<T>(initialState: T)
+new MiniStore<T>(initialState: T)
 ```
 
 ### Methods
@@ -240,7 +240,7 @@ interface AppState {
   };
 }
 
-const store = new SimpleStore<AppState>({
+const store = new MiniStore<AppState>({
   count: 0,
   user: { name: 'John', age: 30 }
 });

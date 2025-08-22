@@ -8,9 +8,9 @@ Your Mini Store library is now fully configured for distribution via GitHub! Her
 
 | File | Size | Purpose | Usage |
 |------|------|---------|-------|
-| `mini-store.browser.min.js` | ~3KB | **Direct window injection** | `<script src="..."></script>` → `window.SimpleStore` |
-| `mini-store.umd.min.js` | ~3KB | UMD with namespace | `<script src="..."></script>` → `MiniStore.SimpleStore` |
-| `mini-store.esm.js` | ~4KB | ES modules | `import { SimpleStore } from "..."` |
+| `mini-store.browser.min.js` | ~3KB | **Direct window injection** | `<script src="..."></script>` → `window.MiniStore` |
+| `mini-store.umd.min.js` | ~3KB | UMD with namespace | `<script src="..."></script>` → `MiniStore.MiniStore` |
+| `mini-store.esm.js` | ~4KB | ES modules | `import { MiniStore } from "..."` |
 | `mini-store.js` | ~4KB | CommonJS | `require('mini-store')` |
 | `mini-store.d.ts` | ~2KB | TypeScript definitions | Auto-completion & types |
 
@@ -21,18 +21,18 @@ Your Mini Store library is now fully configured for distribution via GitHub! Her
 <!-- Direct window injection - SIMPLEST -->
 <script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.browser.min.js"></script>
 <script>
-  const store = new SimpleStore({ count: 0 }); // Directly available!
+  const store = new MiniStore({ count: 0 }); // Directly available!
 </script>
 
 <!-- With namespace -->
 <script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.umd.min.js"></script>
 <script>
-  const { SimpleStore } = MiniStore;
+  const { MiniStore } = MiniStore;
 </script>
 
 <!-- ES Modules -->
 <script type="module">
-  import { SimpleStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
+  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
 </script>
 ```
 

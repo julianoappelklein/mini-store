@@ -1,7 +1,7 @@
-import { SimpleStore } from './index.js';
+import { MiniStore } from './index.js';
 declare global {
     interface Window {
-        SimpleStore: typeof SimpleStore;
+        MiniStore: typeof MiniStore;
     }
 }
-export { SimpleStore };
+export { MiniStore };

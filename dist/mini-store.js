@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-class SimpleStore {
+class MiniStore {
     constructor(state) {
         this._subscribers = new Set();
         this._defaultComparer = (a, b) => a === b;
@@ -78,6 +78,6 @@ class SimpleStore {
     }
 }
 
-exports.SimpleStore = SimpleStore;
-exports.default = SimpleStore;
+exports.MiniStore = MiniStore;
+exports.default = MiniStore;
 //# sourceMappingURL=mini-store.js.map

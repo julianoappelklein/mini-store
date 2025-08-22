@@ -1,7 +1,7 @@
 (function (exports) {
     'use strict';
 
-    class SimpleStore {
+    class MiniStore {
         constructor(state) {
             this._subscribers = new Set();
             this._defaultComparer = (a, b) => a === b;
@@ -78,10 +78,10 @@
     }
 
     if (typeof window !== 'undefined') {
-        window.SimpleStore = SimpleStore;
+        window.MiniStore = MiniStore;
     }
 
-    exports.SimpleStore = SimpleStore;
+    exports.MiniStore = MiniStore;
 
     return exports;
 

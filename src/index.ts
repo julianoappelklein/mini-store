@@ -15,7 +15,7 @@ export interface Subscriber<T, R> {
   comparer: (a: R, b: R) => boolean;
 }
 
-export class SimpleStore<T = any> {
+export class MiniStore<T = any> {
   private _subscribers = new Set<Subscriber<T, any>>();
   private _defaultComparer = <R>(a: R, b: R): boolean => a === b;
   private _defaultSelector = <R>(state: T): R => state as unknown as R;
@@ -104,4 +104,4 @@ export class SimpleStore<T = any> {
   }
 }
 
-export default SimpleStore;
+export default MiniStore;
