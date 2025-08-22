@@ -17,10 +17,10 @@ export interface Subscriber<T, R> {
 
 export class MiniStore<T = any> {
   private _subscribers = new Set<Subscriber<T, any>>();
-  private _defaultComparer = <R>(a: R, b: R): boolean => a === b;
-  private _defaultSelector = <R>(state: T): R => state as unknown as R;
   
   public state: T;
+  public defaultComparer = <R>(a: R, b: R): boolean => a === b;
+  public defaultSelector = <R>(state: T): R => state as unknown as R;
   public emitOnSubscribe: boolean = true;
 
   constructor(state: T) {
@@ -31,25 +31,25 @@ export class MiniStore<T = any> {
     callback: (newValue: R, prevValue: R | null) => void,
     options: SubscriberOptions<T, R> = {}
   ): () => void {
-    const { selector: argumentSelector, comparer: argumentComparer, emitOnSubscribe } = options;
+    const { selector: _selector, comparer: _comparer, emitOnSubscribe } = options;
 
-    const selector = argumentSelector ? (state: T): R => {
+    const selector = _selector ? (state: T): R => {
       try {
-        return argumentSelector(state);
+        return _selector(state);
       } catch (error) {
         console.error('Error in selector:', error, state);
         return null as R;
       }
-    } : this._defaultSelector;
+    } : this.defaultSelector;
 
-    const comparer = argumentComparer ? (a: R, b: R): boolean => {
+    const comparer = _comparer ? (a: R, b: R): boolean => {
       try {
-        return argumentComparer(a, b);
+        return _comparer(a, b);
       } catch (error) {
         console.error('Error in comparer:', error, a, b);
         return false; // treat as changed
       }
-    } : this._defaultComparer;
+    } : this.defaultComparer;
     
     const subscriber: Subscriber<T, R> = {
       selector,
