@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Store - Simple Counter Example</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .counter {
+            font-size: 3em;
+            margin: 20px 0;
+            color: #333;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 2px solid #007acc;
+            background: #007acc;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #005999;
+            border-color: #005999;
+        }
+        button:disabled {
+            background: #ccc;
+            border-color: #ccc;
+            cursor: not-allowed;
+        }
+        .info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mini Store Counter Example</h1>
+    
+    <div class="counter" id="counter">0</div>
+    
+    <button id="decrement">-</button>
+    <button id="increment">+</button>
+    <button id="reset">Reset</button>
+    
+    <div class="info">
+        <h3>What's happening:</h3>
+        <ul>
+            <li>This uses the Mini Store library directly in the browser</li>
+            <li>No bundler or build step required</li>
+            <li>The store manages a simple counter state</li>
+            <li>UI automatically updates when state changes</li>
+            <li>Open browser console to see state updates logged</li>
+        </ul>
+    </div>
+
+    <!-- Load Mini Store from local build -->
+    <!-- For production, use: <script src="https://unpkg.com/mini-store/dist/mini-store.umd.min.js"></script> -->
+    <script src="../dist/mini-store.umd.js"></script>
+        
+        const { SimpleStore } = MiniStore;
+        
+        // Create store with initial state
+        const store = new SimpleStore({ 
+            count: 0,
+            lastUpdated: new Date().toISOString()
+        });
+        
+        // Get DOM elements
+        const counterEl = document.getElementById('counter');
+        const incrementBtn = document.getElementById('increment');
+        const decrementBtn = document.getElementById('decrement');
+        const resetBtn = document.getElementById('reset');
+        
+        // Subscribe to count changes and update the UI
+        store.subscribe(
+            (count) => {
+                counterEl.textContent = count;
+                console.log('Counter updated to:', count);
+                
+                // Disable decrement button when count is 0
+                decrementBtn.disabled = count <= 0;
+            },
+            { 
+                selector: state => state.count,
+                emitOnSubscribe: true 
+            }
+        );
+        
+        // Subscribe to last updated time
+        store.subscribe(
+            (lastUpdated) => {
+                console.log('Last updated:', lastUpdated);
+            },
+            { 
+                selector: state => state.lastUpdated,
+                emitOnSubscribe: false // Don't log initial time
+            }
+        );
+        
+        // Button event handlers
+        incrementBtn.onclick = () => {
+            store.update(state => ({
+                count: state.count + 1,
+                lastUpdated: new Date().toISOString()
+            }));
+        };
+        
+        decrementBtn.onclick = () => {
+            store.update(state => ({
+                count: Math.max(0, state.count - 1),
+                lastUpdated: new Date().toISOString()
+            }));
+        };
+        
+        resetBtn.onclick = () => {
+            store.update({
+                count: 0,
+                lastUpdated: new Date().toISOString()
+            });
+        };
+        
+        console.log('Mini Store counter example loaded!');
+        console.log('Current state:', store.state);
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+node_modules/
+*.log
+.DS_Store
+coverage/
+
+# Note: dist/ is committed for GitHub CDN distribution
+# dist/

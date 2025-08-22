@@ -1,0 +1,46 @@
+{
+  "name": "mini-store",
+  "version": "1.0.0",
+  "description": "A lightweight reactive state management library",
+  "type": "module",
+  "main": "dist/mini-store.js",
+  "module": "dist/mini-store.esm.js",
+  "browser": "dist/mini-store.umd.js",
+  "types": "dist/mini-store.d.ts",
+  "files": [
+    "dist",
+    "examples"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "state-management",
+    "reactive",
+    "store",
+    "lightweight",
+    "mini"
+  ],
+  "author": "Juliano",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/jest": "^29.5.11",
+    "jest": "^29.7.0",
+    "rollup": "^4.9.6",
+    "ts-jest": "^29.1.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/mini-store.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/mini-store/issues"
+  },
+  "homepage": "https://github.com/yourusername/mini-store#readme"
+}

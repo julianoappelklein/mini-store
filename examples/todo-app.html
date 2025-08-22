@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Store - Todo App Example</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .todo-input {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .todo-input input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .todo-input button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #007acc;
+            background: #007acc;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .todo-input button:hover {
+            background: #005999;
+        }
+        
+        .todo-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            background: white;
+        }
+        
+        .todo-item.completed {
+            background: #f0f0f0;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .todo-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .todo-text {
+            flex: 1;
+        }
+        
+        .delete-btn {
+            padding: 5px 10px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .delete-btn:hover {
+            background: #cc0000;
+        }
+        
+        .stats {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .filter-buttons {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .filter-buttons button {
+            margin: 0 5px;
+            padding: 5px 15px;
+            border: 1px solid #007acc;
+            background: white;
+            color: #007acc;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .filter-buttons button.active {
+            background: #007acc;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mini Store Todo App</h1>
+    
+    <div class="todo-input">
+        <input type="text" id="todoInput" placeholder="Enter a new todo..." />
+        <button id="addBtn">Add Todo</button>
+    </div>
+    
+    <div class="filter-buttons">
+        <button id="filterAll" class="active">All</button>
+        <button id="filterActive">Active</button>
+        <button id="filterCompleted">Completed</button>
+    </div>
+    
+    <ul class="todo-list" id="todoList"></ul>
+    
+    <div class="stats">
+        <span id="totalCount">Total: 0</span>
+        <span id="activeCount">Active: 0</span>
+        <span id="completedCount">Completed: 0</span>
+    </div>
+
+    <!-- Use local build for development -->
+    <script src="../dist/mini-store.umd.js"></script>
+    <script>
+        const { SimpleStore } = MiniStore;
+        
+        // Initial state
+        const store = new SimpleStore({
+            todos: [],
+            filter: 'all', // 'all', 'active', 'completed'
+            nextId: 1
+        });
+        
+        // DOM elements
+        const todoInput = document.getElementById('todoInput');
+        const addBtn = document.getElementById('addBtn');
+        const todoList = document.getElementById('todoList');
+        const totalCount = document.getElementById('totalCount');
+        const activeCount = document.getElementById('activeCount');
+        const completedCount = document.getElementById('completedCount');
+        const filterAll = document.getElementById('filterAll');
+        const filterActive = document.getElementById('filterActive');
+        const filterCompleted = document.getElementById('filterCompleted');
+        
+        // Helper functions
+        function createTodoElement(todo) {
+            const li = document.createElement('li');
+            li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+            li.innerHTML = `
+                <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleTodo(${todo.id})">
+                <span class="todo-text">${todo.text}</span>
+                <button class="delete-btn" onclick="deleteTodo(${todo.id})">Delete</button>
+            `;
+            return li;
+        }
+        
+        function filterTodos(todos, filter) {
+            switch (filter) {
+                case 'active':
+                    return todos.filter(todo => !todo.completed);
+                case 'completed':
+                    return todos.filter(todo => todo.completed);
+                default:
+                    return todos;
+            }
+        }
+        
+        // Global functions for event handlers
+        window.toggleTodo = (id) => {
+            store.update(state => ({
+                ...state,
+                todos: state.todos.map(todo =>
+                    todo.id === id ? { ...todo, completed: !todo.completed } : todo
+                )
+            }));
+        };
+        
+        window.deleteTodo = (id) => {
+            store.update(state => ({
+                ...state,
+                todos: state.todos.filter(todo => todo.id !== id)
+            }));
+        };
+        
+        // Subscribe to filtered todos and render list
+        store.subscribe(
+            (filteredTodos) => {
+                todoList.innerHTML = '';
+                filteredTodos.forEach(todo => {
+                    todoList.appendChild(createTodoElement(todo));
+                });
+            },
+            {
+                selector: state => filterTodos(state.todos, state.filter)
+            }
+        );
+        
+        // Subscribe to stats
+        store.subscribe(
+            (todos) => {
+                const total = todos.length;
+                const active = todos.filter(todo => !todo.completed).length;
+                const completed = todos.filter(todo => todo.completed).length;
+                
+                totalCount.textContent = `Total: ${total}`;
+                activeCount.textContent = `Active: ${active}`;
+                completedCount.textContent = `Completed: ${completed}`;
+            },
+            {
+                selector: state => state.todos
+            }
+        );
+        
+        // Subscribe to filter changes and update button styles
+        store.subscribe(
+            (filter) => {
+                [filterAll, filterActive, filterCompleted].forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                switch (filter) {
+                    case 'active':
+                        filterActive.classList.add('active');
+                        break;
+                    case 'completed':
+                        filterCompleted.classList.add('active');
+                        break;
+                    default:
+                        filterAll.classList.add('active');
+                }
+            },
+            {
+                selector: state => state.filter
+            }
+        );
+        
+        // Event handlers
+        addBtn.onclick = () => {
+            const text = todoInput.value.trim();
+            if (text) {
+                store.update(state => ({
+                    ...state,
+                    todos: [...state.todos, {
+                        id: state.nextId,
+                        text: text,
+                        completed: false
+                    }],
+                    nextId: state.nextId + 1
+                }));
+                todoInput.value = '';
+            }
+        };
+        
+        todoInput.onkeypress = (e) => {
+            if (e.key === 'Enter') {
+                addBtn.click();
+            }
+        };
+        
+        filterAll.onclick = () => store.update({ filter: 'all' });
+        filterActive.onclick = () => store.update({ filter: 'active' });
+        filterCompleted.onclick = () => store.update({ filter: 'completed' });
+        
+        console.log('Todo app loaded with Mini Store!');
+    </script>
+</body>
+</html>
