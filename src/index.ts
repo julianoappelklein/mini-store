@@ -102,6 +102,10 @@ export class MiniStore<T = any> {
       }
     });
   }
+
+  unsubscribeAll(): void {
+    this._subscribers.clear();
+  }
 }
 
 export default MiniStore;
