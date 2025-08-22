@@ -37,10 +37,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/mini-store.git"
+    "url": "https://github.com/julianoappelklein/mini-store.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/mini-store/issues"
+    "url": "https://github.com/julianoappelklein/mini-store/issues"
   },
-  "homepage": "https://github.com/yourusername/mini-store#readme"
+  "homepage": "https://github.com/julianoappelklein/mini-store#readme"
 }

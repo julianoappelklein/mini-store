@@ -23,39 +23,17 @@ See [GITHUB_DISTRIBUTION.md](GITHUB_DISTRIBUTION.md) for details on using Mini S
 
 ### Direct Browser Usage
 ```html
-<!-- For modern browsers (ES modules) -->
-<script type="module">
-  import { MiniStore } from 'https://unpkg.com/mini-store/dist/mini-store.esm.js';
-</script>
-
-<!-- For older browsers (UMD with namespace) -->
-<script src="https://unpkg.com/mini-store/dist/mini-store.umd.min.js"></script>
-<script>
-  const { MiniStore } = MiniStore;
-</script>
-
-<!-- Direct window injection (no namespace needed) -->
-<script src="https://unpkg.com/mini-store/dist/mini-store.browser.min.js"></script>
-<script>
-  // MiniStore is now available globally
-  const store = new MiniStore({ count: 0 });
-</script>
-```
-
-### GitHub Distribution (CDN)
-```html
 <!-- Using GitHub as CDN with jsDelivr -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.browser.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@latest/dist/mini-store.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@latest/dist/mini-store.umd.min.js"></script>
 
 <!-- ES modules from GitHub -->
 <script type="module">
-  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
+  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@latest/dist/mini-store.esm.js';
 </script>
 
 <!-- Specific version -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@v1.0.0/dist/mini-store.browser.min.js"></script>
-```
+<script src="https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@v1.0.0/dist/mini-store.browser.min.js"></script>
 <script>
   // MiniStore is directly available!
   const store = new MiniStore({ count: 0 });
@@ -115,7 +93,7 @@ The library provides different builds for browser usage:
   }, { selector: state => state.count });
   
   // Update count
-  store.update(state => ({ count: state.count + 1 }));
+  store.update(state => ({ ...state, count: state.count + 1 }));
 </script>
 ```
 

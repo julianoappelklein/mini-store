@@ -19,20 +19,20 @@ Your Mini Store library is now fully configured for distribution via GitHub! Her
 #### 1. GitHub via jsDelivr (Recommended)
 ```html
 <!-- Direct window injection - SIMPLEST -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@latest/dist/mini-store.browser.min.js"></script>
 <script>
   const store = new MiniStore({ count: 0 }); // Directly available!
 </script>
 
 <!-- With namespace -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@latest/dist/mini-store.umd.min.js"></script>
 <script>
   const { MiniStore } = MiniStore;
 </script>
 
 <!-- ES Modules -->
 <script type="module">
-  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
+  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@latest/dist/mini-store.esm.js';
 </script>
 ```
 
@@ -57,7 +57,7 @@ Your Mini Store library is now fully configured for distribution via GitHub! Her
 
 1. **Create GitHub Repository**
 2. **Update package.json** with your repository URL
-3. **Replace 'yourusername'** in examples with your GitHub username
+3. **Replace 'julianoappelklein'** in examples with your GitHub username
 4. **Run setup script**: `./setup-github.sh`
 5. **Commit and push** all files to GitHub
 6. **Create releases** using git tags

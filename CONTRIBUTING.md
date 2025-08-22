@@ -6,7 +6,7 @@ Thank you for your interest in contributing to Mini Store! This document provide
 
 1. **Fork and clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/mini-store.git
+   git clone https://github.com/julianoappelklein/mini-store.git
    cd mini-store
    ```
 

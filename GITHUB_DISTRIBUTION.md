@@ -33,20 +33,20 @@ dist/
 
 ```html
 <!-- Latest version -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@latest/dist/mini-store.browser.min.js"></script>
 
 <!-- Specific version -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@v1.0.0/dist/mini-store.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@v1.0.0/dist/mini-store.browser.min.js"></script>
 
 <!-- Specific commit -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/mini-store@abc1234/dist/mini-store.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@abc1234/dist/mini-store.browser.min.js"></script>
 ```
 
 ### ES Modules from GitHub
 
 ```html
 <script type="module">
-  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/yourusername/mini-store@latest/dist/mini-store.esm.js';
+  import { MiniStore } from 'https://cdn.jsdelivr.net/gh/julianoappelklein/mini-store@latest/dist/mini-store.esm.js';
   
   const store = new MiniStore({ count: 0 });
 </script>
